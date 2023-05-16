@@ -3,6 +3,7 @@ import "./sytels.css";
 import { MegaMenu } from "primereact/megamenu";
 import { InputText } from "primereact/inputtext";
 import { TabView, TabPanel } from "primereact/tabview";
+import EquipoMenu from "../equipomenu/index";
 const MenuContainer = () => {
   const items = [
     {
@@ -129,16 +130,8 @@ const MenuContainer = () => {
     <>
       <div class="overlay">
         <TabView>
-          <TabPanel header="Header I">
-            <p className="m-0">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          <TabPanel header="Equipo de computo">
+            <EquipoMenu/>
           </TabPanel>
           <TabPanel header="Header II">
             <p className="m-0">

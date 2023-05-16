@@ -5,7 +5,6 @@ function Menu() {
   return (
     <div>
         <MenuContainer/>
-        Menu completo
     </div>
   )
 }

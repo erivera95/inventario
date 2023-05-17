@@ -27,17 +27,18 @@ const EquipoContainer = (props) => {
           icon="pi pi-pencil"
           onClick={() => handlePrintRow(rowData)}
           label="Firmar"
-          style={{ marginLeft: "10px" }}
+          style={{
+            marginLeft: "10px",
+            backgroundColor: "#fc4103",
+            border: "#6366f100",
+          }}
         />
       </div>
     );
   };
 
   const headerButtonTemplate = (
-    <Button
-      icon="pi pi-refresh"
-      onClick={handleButtonClick}
-    />
+    <Button icon="pi pi-refresh" onClick={handleButtonClick} />
   );
   return (
     <div>
@@ -79,7 +80,7 @@ const EquipoContainer = (props) => {
         />
         <Column
           header={headerButtonTemplate}
-          style={{ width: "3rem", textAlign: "center" }}
+          style={{ width: "1rem", textAlign: "center" }}
         />
       </DataTable>
     </div>

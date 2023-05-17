@@ -133,7 +133,7 @@ const MenuContainer = () => {
           <TabPanel header="Equipo de computo">
             <EquipoMenu/>
           </TabPanel>
-          <TabPanel header="Header II">
+          <TabPanel header="Impresoras">
             <p className="m-0">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
@@ -144,7 +144,7 @@ const MenuContainer = () => {
               velit, sed quia non numquam eius modi.
             </p>
           </TabPanel>
-          <TabPanel header="Header III">
+          <TabPanel header="Licencias Office">
             <p className="m-0">
               At vero eos et accusamus et iusto odio dignissimos ducimus qui
               blanditiis praesentium voluptatum deleniti atque corrupti quos

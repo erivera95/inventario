@@ -5,6 +5,7 @@ import { InputText } from "primereact/inputtext";
 import { TabView, TabPanel } from "primereact/tabview";
 import EquipoMenu from "../equipomenu/index";
 import LicenciasForm from "../licenciasForm";
+import Licencias from "../licencias";
 const MenuContainer = () => {
   const items = [
     {
@@ -132,10 +133,10 @@ const MenuContainer = () => {
       <div class="overlay">
         <TabView>
           <TabPanel header="Equipo de computo">
-            <EquipoMenu/>
+            <EquipoMenu />
           </TabPanel>
           <TabPanel header="Licencias Office">
-            <LicenciasForm/>
+            <Licencias />
           </TabPanel>
         </TabView>
       </div>

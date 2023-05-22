@@ -4,7 +4,7 @@ import LicenciasFormContainer from './licenciasForm'
 function LicenciasForm() {
   return (
     <div>
-        <LicenciasFormContainer/>
+      <LicenciasFormContainer />
     </div>
   )
 }

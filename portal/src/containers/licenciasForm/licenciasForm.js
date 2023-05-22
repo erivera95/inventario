@@ -6,7 +6,9 @@ import "./style.css";
 import { Button } from "primereact/button";
 
 const LicenciasFormContainer = () => {
+
   const [selectedCity, setSelectedCity] = useState(null);
+  
   const empresas = [
     { name: "New York Life", code: "NY" },
     { name: "Riveras Movement", code: "RM" },
@@ -46,6 +48,7 @@ const LicenciasFormContainer = () => {
 
   return (
     <div style={{ width: "87vw" }}>
+      
       <div class="divLabelInput" id="Empresas">
         <label htmlFor="username" class="labelInputs">
           Empresa

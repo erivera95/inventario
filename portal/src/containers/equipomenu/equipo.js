@@ -38,8 +38,12 @@ const EquipoContainer = (props) => {
   };
 
   const headerButtonTemplate = (
-    <Button icon="pi pi-refresh" onClick={handleButtonClick} />
+    <div style={{ display: "flex", direction: "column" }}>
+      <Button icon="pi pi-refresh" onClick={handleButtonClick} />
+      <Button icon="pi pi-plus" severity="danger" onClick={handleButtonClick} />
+    </div>
   );
+
   return (
     <div>
       <DataTable

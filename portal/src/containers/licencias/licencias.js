@@ -98,20 +98,33 @@ const LicenciasContainer = (props) => {
 
             <Dialog class="modal"
                 visible={modalFormVisible}
+                closable={false}
                 style={{
                     width: '90vw',
                     backgroundColor: "#FFFFFF",
                     height: "70%",
                     alignContent: 'center',
                     justifyContent: 'center',
-                    display: 'flex'
+                    display: 'flex',
+                    padding: '15px'
                 }}
+                modal
                 onHide={handleCloseModal}>
                 <p className="m-0">
+                    <Button style={{
+                        position: "absolute",
+                        top: "14vh",
+                        right: "4vw",
+                        margin: "0",
+                        padding: "8px 12px",
+                        backgroundColor: "red",
+                        border: "none",
+                        cursor: "pointer",
+                    }} onClick={handleCloseModal}>X</Button>
                     <LicenciasForm />
                 </p>
             </Dialog>
-        </div>
+        </div >
     );
 };
 

@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
+import { Dialog } from 'primereact/dialog';
 import "primeicons/primeicons.css";
+import EquiposForm from "../equiposForm";
+
 const EquipoContainer = (props) => {
-  const { handlePrintRow, handleButtonClick } = props;
-  const [products, setProducts] = useState([
-    { id: "0", Empresa: "tata", ciudad: "GDL", FechaDeCaptura: "16/05/2023" },
-    { id: "1", Empresa: "TCS", ciudad: "CDMX", FechaDeCaptura: "16/05/2023" },
-    { id: "2", Empresa: "USAA", ciudad: "MTY", FechaDeCaptura: "16/05/2023" },
-  ]);
+  const { handlePrintRow,
+    handleButtonClick,
+    products,
+    handleOnClickAdd,
+
+    //Modal
+    modalFormVisible,
+    handleCloseModal
+  } = props;
+
 
   const rowButtonTemplate = (rowData) => {
     return (
@@ -40,7 +47,7 @@ const EquipoContainer = (props) => {
   const headerButtonTemplate = (
     <div style={{ display: "flex", direction: "column" }}>
       <Button icon="pi pi-refresh" onClick={handleButtonClick} />
-      <Button icon="pi pi-plus" severity="danger" onClick={handleButtonClick} />
+      <Button icon="pi pi-plus" severity="danger" onClick={handleOnClickAdd} />
     </div>
   );
 
@@ -87,6 +94,35 @@ const EquipoContainer = (props) => {
           style={{ width: "1rem", textAlign: "center" }}
         />
       </DataTable>
+
+      <Dialog class="modal"
+        visible={modalFormVisible}
+        closable={false}
+        style={{
+          width: '90vw',
+          backgroundColor: "#FFFFFF",
+          alignContent: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          padding: '15px'
+        }}
+        modal
+        onHide={handleCloseModal}>
+        <p className="m-0">
+          <Button
+            style={{
+              position: "absolute",
+              top: "22vh",
+              right: "4vw",
+              margin: "0",
+              padding: "8px 12px",
+              backgroundColor: "red",
+              border: "none",
+              cursor: "pointer",
+            }} onClick={handleCloseModal}>X</Button>
+          <EquiposForm />
+        </p>
+      </Dialog>
     </div>
   );
 };

@@ -95,7 +95,39 @@ const EquipoContainer = (props) => {
         />
       </DataTable>
 
+
+      {/* Modal agregar*/}
       <Dialog class="modal"
+        visible={modalFormVisible}
+        closable={false}
+        style={{
+          width: '90vw',
+          backgroundColor: "#FFFFFF",
+          alignContent: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          padding: '15px'
+        }}
+        modal
+        onHide={handleCloseModal}>
+        <p className="m-0">
+          <Button
+            style={{
+              position: "absolute",
+              top: "22vh",
+              right: "4vw",
+              margin: "0",
+              padding: "8px 12px",
+              backgroundColor: "red",
+              border: "none",
+              cursor: "pointer",
+            }} onClick={handleCloseModal}>X</Button>
+          <EquiposForm />
+        </p>
+      </Dialog>
+
+      {/* Modal informacion */}
+      <Dialog id="modal"
         visible={modalFormVisible}
         closable={false}
         style={{

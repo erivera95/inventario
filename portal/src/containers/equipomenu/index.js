@@ -3,7 +3,8 @@ import EquipoContainer from "./equipo";
 
 function EquipoMenu() {
 
-  const [modalFormVisible, setModalFormVisible] = useState(false);
+  const [modalFormVisible, setModalFormVisible] = useState(false); // Modal agregar
+  const [modalSignature, setModalSignature] = useState(false); //Modal firmar
   const [products, setProducts] = useState([
     { id: "0", Empresa: "tata", ciudad: "GDL", FechaDeCaptura: "16/05/2023" },
     { id: "1", Empresa: "TCS", ciudad: "CDMX", FechaDeCaptura: "16/05/2023" },
@@ -14,6 +15,10 @@ function EquipoMenu() {
   };
   const handleOnClickAdd = () => {
     setModalFormVisible(true)
+    console.log('Lo pase a true')
+  };
+  const handleOnSignature = () => {
+    setModalSignature(true)
     console.log('Lo pase a true')
   };
   const handleCloseModal = () => {
@@ -27,7 +32,11 @@ function EquipoMenu() {
         products={products}
         handleOnClickAdd={handleOnClickAdd}
         modalFormVisible={modalFormVisible}
-        handleCloseModal={handleCloseModal} />
+        handleCloseModal={handleCloseModal}
+
+        handleOnSignature={handleOnSignature}
+        modalSignature={modalSignature}
+      />
     </div>
   );
 }

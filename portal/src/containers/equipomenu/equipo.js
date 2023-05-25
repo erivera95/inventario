@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { Dialog } from 'primereact/dialog';
 import "primeicons/primeicons.css";
 import EquiposForm from "../equiposForm";
+import Firma from "../../components/modales/firma";
 
 const EquipoContainer = (props) => {
   const { handlePrintRow,
@@ -12,9 +13,14 @@ const EquipoContainer = (props) => {
     products,
     handleOnClickAdd,
 
-    //Modal
+    //Modal agregar
     modalFormVisible,
-    handleCloseModal
+    handleCloseModal,
+
+    //Modal firma
+    modalSignature,
+    handleOnSignature,
+
   } = props;
 
 
@@ -32,7 +38,7 @@ const EquipoContainer = (props) => {
         />
         <Button
           icon="pi pi-pencil"
-          onClick={() => handlePrintRow(rowData)}
+          onClick={() => handleOnSignature(rowData)}
           label="Firmar"
           style={{
             marginLeft: "10px",
@@ -97,7 +103,8 @@ const EquipoContainer = (props) => {
 
 
       {/* Modal agregar*/}
-      <Dialog class="modal"
+      <Dialog 
+        class="modal"
         visible={modalFormVisible}
         closable={false}
         style={{
@@ -126,9 +133,10 @@ const EquipoContainer = (props) => {
         </p>
       </Dialog>
 
-      {/* Modal informacion */}
-      <Dialog id="modal"
-        visible={modalFormVisible}
+      {/* Modal Firma */}
+      <Dialog 
+        class="modal"
+        visible={modalSignature}
         closable={false}
         style={{
           width: '90vw',
@@ -139,20 +147,10 @@ const EquipoContainer = (props) => {
           padding: '15px'
         }}
         modal
-        onHide={handleCloseModal}>
+        // onHide={handleCloseModal}
+        >
         <p className="m-0">
-          <Button
-            style={{
-              position: "absolute",
-              top: "22vh",
-              right: "4vw",
-              margin: "0",
-              padding: "8px 12px",
-              backgroundColor: "red",
-              border: "none",
-              cursor: "pointer",
-            }} onClick={handleCloseModal}>X</Button>
-          <EquiposForm />
+          <Firma />
         </p>
       </Dialog>
     </div>

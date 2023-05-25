@@ -2,7 +2,7 @@ import React from 'react'
 import FirmaContainer from './firma'
 
 function Firma() {
-    let signatureCanvas = null;
+    const signatureCanvas = null;
 
     const handleClear = () => {
         signatureCanvas.clear();

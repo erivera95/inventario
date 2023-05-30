@@ -3,24 +3,38 @@ import SignatureCanvas from 'react-signature-canvas';
 import { Button } from "primereact/button";
 
 const FirmaContainer = (props) => {
-    //const { handleClear, handleSave, signatureCanvas } = props;
     //let signatureCanvas = null;
+    const {
+        handleClear,
+        //handleSave,
+        //signatureCanvas 
+    } = props;
+    //const { handleOnSave, } = props;
 
     let signatureCanvas = null;
 
-    const handleClear = () => {
-        signatureCanvas.clear();
-    };
+    //const handleClear = () => {
+    //  signatureCanvas.clear();
+    //};
 
     const handleSave = () => {
         const dataURL = signatureCanvas.toDataURL();
         console.log(dataURL);
+        signatureCanvas.clear();
     };
     return (
         <div>
             <SignatureCanvas
                 ref={(ref) => (signatureCanvas = ref)}
-                canvasProps={{ width: 500, height: 200, className: 'signature-canvas' }}
+                canvasProps={{
+                    width: "700px",
+                    height: "200px",
+                    //className: 'signature-canvas',
+                    backgroundColor: "gray",
+                    border: "2px",
+
+
+                }}
             />
             <div
                 id="Botones"
@@ -28,6 +42,7 @@ const FirmaContainer = (props) => {
                     display: "flex",
                     justifyContent: "space-between",
                     padding: "10px 20px 0px 20px",
+                    //width:"100vw"
                 }}
             >
                 <Button
@@ -39,7 +54,7 @@ const FirmaContainer = (props) => {
                 </Button>
                 <Button style={{ backgroundColor: "#00bacf", border: "#6366f100" }}
                     onClick={handleClear}>
-                    Limpiar
+                    Limpiar 
                 </Button>
             </div>
         </div>

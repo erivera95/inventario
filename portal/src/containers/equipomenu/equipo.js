@@ -139,7 +139,7 @@ const EquipoContainer = (props) => {
         visible={modalSignature}
         closable={false}
         style={{
-          width: '90vw',
+          width: '45vw',
           backgroundColor: "#FFFFFF",
           alignContent: 'center',
           justifyContent: 'center',

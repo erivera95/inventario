@@ -8,12 +8,13 @@ function Firma({ onFirmaGuardada }) {
         if (signatureCanvasRef.current) {
             signatureCanvasRef.current.clear();
         }
+        console.log("Limpie desde interno")
     };
 
     const handleSave = () => {
         if (signatureCanvasRef.current) {
             const dataURL = signatureCanvasRef.current.toDataURL();
-            console.log(dataURL);
+            onFirmaGuardada(dataURL);
             signatureCanvasRef.current.clear();
         }
     };

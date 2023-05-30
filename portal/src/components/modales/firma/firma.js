@@ -7,14 +7,19 @@ const FirmaContainer = (props) => {
     const {
         handleClear,
         handleSave,
-        signatureCanvasRef  
+        signatureCanvasRef
     } = props;
 
     return (
         <div>
             <SignatureCanvas ref={signatureCanvasRef} />
 
-            <div id="Botones" style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px 0px 20px" }}>
+            <div id="Botones"
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "10px 20px 0px 20px"
+                }}>
                 <Button
                     style={{ backgroundColor: "#00a811", border: "#6366f100" }}
                     icon="pi pi-save"

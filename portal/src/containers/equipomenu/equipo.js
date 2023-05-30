@@ -148,7 +148,6 @@ const EquipoContainer = (props) => {
           padding: '15px'
         }}
         modal
-        // onHide={handleCloseModal}
         >
         <p className="m-0">
         <Firma onFirmaGuardada={handleFirmaGuardada} />

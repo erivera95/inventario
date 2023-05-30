@@ -7,7 +7,7 @@ const FirmaContainer = (props) => {
     const {
         handleClear,
         handleSave,
-        signatureCanvasRef
+        signatureCanvasRef  
     } = props;
 
     return (

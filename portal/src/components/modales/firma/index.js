@@ -1,23 +1,30 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import FirmaContainer from './firma'
 
-function Firma() {
-    const signatureCanvas = null;
+function Firma({ onFirmaGuardada }) {
+    const signatureCanvasRef = useRef(null);
 
     const handleClear = () => {
-        signatureCanvas.clear();
+        if (signatureCanvasRef.current) {
+            signatureCanvasRef.current.clear();
+        }
     };
 
     const handleSave = () => {
-        const dataURL = signatureCanvas.toDataURL();
-        console.log(dataURL);
+        if (signatureCanvasRef.current) {
+            const dataURL = signatureCanvasRef.current.toDataURL();
+            console.log(dataURL);
+            signatureCanvasRef.current.clear();
+        }
     };
     return (
-        <div><FirmaContainer
-            handleClear={handleClear}
-            handleSave={handleSave}
-            signatureCanvas={signatureCanvas}
-        /></div>
+        <div>
+            <FirmaContainer
+                handleClear={handleClear}
+                handleSave={handleSave}
+                signatureCanvasRef={signatureCanvasRef}
+            />
+        </div>
     )
 }
 

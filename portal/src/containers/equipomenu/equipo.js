@@ -20,6 +20,7 @@ const EquipoContainer = (props) => {
     //Modal firma
     modalSignature,
     handleOnSignature,
+    handleFirmaGuardada
 
   } = props;
 
@@ -150,7 +151,7 @@ const EquipoContainer = (props) => {
         // onHide={handleCloseModal}
         >
         <p className="m-0">
-          <Firma />
+        <Firma onFirmaGuardada={handleFirmaGuardada} />
         </p>
       </Dialog>
     </div>

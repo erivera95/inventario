@@ -6,45 +6,15 @@ const FirmaContainer = (props) => {
     //let signatureCanvas = null;
     const {
         handleClear,
-        //handleSave,
-        //signatureCanvas 
+        handleSave,
+        signatureCanvasRef
     } = props;
-    //const { handleOnSave, } = props;
 
-    let signatureCanvas = null;
-
-    //const handleClear = () => {
-    //  signatureCanvas.clear();
-    //};
-
-    const handleSave = () => {
-        const dataURL = signatureCanvas.toDataURL();
-        console.log(dataURL);
-        signatureCanvas.clear();
-    };
     return (
         <div>
-            <SignatureCanvas
-                ref={(ref) => (signatureCanvas = ref)}
-                canvasProps={{
-                    width: "700px",
-                    height: "200px",
-                    //className: 'signature-canvas',
-                    backgroundColor: "gray",
-                    border: "2px",
+            <SignatureCanvas ref={signatureCanvasRef} />
 
-
-                }}
-            />
-            <div
-                id="Botones"
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "10px 20px 0px 20px",
-                    //width:"100vw"
-                }}
-            >
+            <div id="Botones" style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px 0px 20px" }}>
                 <Button
                     style={{ backgroundColor: "#00a811", border: "#6366f100" }}
                     icon="pi pi-save"
@@ -52,9 +22,11 @@ const FirmaContainer = (props) => {
                 >
                     Guardar
                 </Button>
-                <Button style={{ backgroundColor: "#00bacf", border: "#6366f100" }}
-                    onClick={handleClear}>
-                    Limpiar 
+                <Button
+                    style={{ backgroundColor: "#00bacf", border: "#6366f100" }}
+                    onClick={handleClear}
+                >
+                    Limpiar
                 </Button>
             </div>
         </div>

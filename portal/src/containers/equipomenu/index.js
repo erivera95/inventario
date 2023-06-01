@@ -9,22 +9,23 @@ function EquipoMenu() {
   ]);
 
   const [modalFormVisible, setModalFormVisible] = useState(false); // Modal agregar
-  const [modalSignature, setModalSignature] = useState(false);
-  //const [firmaGuardada, setFirmaGuardada] = useState('');
+  const [modalSignature, setModalSignature] = useState(false);//Modal Firma
+  const [modalInformacion, setModalInformacion] = useState(false);//Modal Informacion
+  const [informacion, setInformacion] = useState('');//Modal Informacion
 
+  const handleReload = () => {
+    window.location.reload();
+  };
   const handleFirmaGuardada = (dataURL) => {
-    console.log("La firma desde el menuEquipo es: ",dataURL);
+    console.log("La firma desde el menuEquipo es: ", dataURL);
     setModalSignature(false)
     console.log("Guarde y cerre desde firmaguardada")
   };
-
-  const handlePrintRow = (rowData) => {
+  const handleInformation = (rowData) => {
+    setModalInformacion(true)
+    setInformacion(rowData)
     console.log(rowData);
-    console.log("Guarde y cerre")
-  };
-  const handleOnClickAdd = () => {
-    setModalFormVisible(true)
-    console.log('Lo pase a true')
+    console.log("Impresion desde boton informacion")
   };
   const handleOnSignature = () => {
     setModalSignature(true)
@@ -33,14 +34,15 @@ function EquipoMenu() {
   const handleCloseModal = () => {
     setModalFormVisible(false)
     setModalSignature(false)
+    setModalInformacion(false)
     console.log('Lo pase a false con close modal')
   }
+
   return (
     <div>
       <EquipoContainer
-        handlePrintRow={handlePrintRow}
         products={products}
-        handleOnClickAdd={handleOnClickAdd}
+        handleReload={handleReload}
         modalFormVisible={modalFormVisible}
         handleCloseModal={handleCloseModal}
 
@@ -48,6 +50,11 @@ function EquipoMenu() {
         handleOnSignature={handleOnSignature}
         modalSignature={modalSignature}
         handleFirmaGuardada={handleFirmaGuardada}
+
+        //Modal Informacion
+        modalInformacion={modalInformacion}
+        handleInformation={handleInformation}
+        informacion={informacion}
       />
     </div>
   );

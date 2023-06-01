@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
@@ -6,10 +6,11 @@ import { Dialog } from 'primereact/dialog';
 import "primeicons/primeicons.css";
 import EquiposForm from "../equiposForm";
 import Firma from "../../components/modales/firma";
+import Informacion from "../../components/modales/informacion";
 
 const EquipoContainer = (props) => {
-  const { handlePrintRow,
-    handleButtonClick,
+  const {
+    handleReload,
     products,
     handleOnClickAdd,
 
@@ -20,7 +21,12 @@ const EquipoContainer = (props) => {
     //Modal firma
     modalSignature,
     handleOnSignature,
-    handleFirmaGuardada
+    handleFirmaGuardada,
+
+    //Modal informacion
+    handleInformation,
+    informacion,
+    modalInformacion
 
   } = props;
 
@@ -30,13 +36,14 @@ const EquipoContainer = (props) => {
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Button
           icon="pi pi-search"
-          onClick={() => handlePrintRow(rowData)}
+          onClick={() => handleInformation(rowData)}
           style={{
             backgroundColor: "#fcba03",
             border: "#6366f100",
             margin: "0px",
           }}
         />
+
         <Button
           icon="pi pi-pencil"
           onClick={() => handleOnSignature(rowData)}
@@ -53,7 +60,7 @@ const EquipoContainer = (props) => {
 
   const headerButtonTemplate = (
     <div style={{ display: "flex", direction: "column" }}>
-      <Button icon="pi pi-refresh" onClick={handleButtonClick} />
+      <Button icon="pi pi-refresh" onClick={handleReload} />
       <Button icon="pi pi-plus" severity="danger" onClick={handleOnClickAdd} />
     </div>
   );
@@ -104,7 +111,7 @@ const EquipoContainer = (props) => {
 
 
       {/* Modal agregar*/}
-      <Dialog 
+      <Dialog
         class="modal"
         visible={modalFormVisible}
         closable={false}
@@ -135,7 +142,7 @@ const EquipoContainer = (props) => {
       </Dialog>
 
       {/* Modal Firma */}
-      <Dialog 
+      <Dialog
         class="modal"
         visible={modalSignature}
         closable={false}
@@ -148,10 +155,33 @@ const EquipoContainer = (props) => {
           padding: '15px'
         }}
         modal
-        >
+      >
         <p className="m-0">
-        <Firma onFirmaGuardada={handleFirmaGuardada} />
+          <Firma onFirmaGuardada={handleFirmaGuardada} />
         </p>
+      </Dialog>
+
+      {/*Modal informacion*/}
+      <Dialog
+        class="modal"
+        visible={modalInformacion}
+        closable={false}
+        style={{
+          width: '50vw',
+          backgroundColor: "#FFFFFF",
+          alignContent: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          padding: '15px',
+          borderRadius: '15px',
+        }}
+        modal
+      >
+        <Informacion informacion={informacion} />
+        <div style={{display:'flex', justifyContent:'center',paddingTop:'14px'}}>
+        <Button onClick={handleCloseModal}>Cerrar</Button>
+
+        </div>
       </Dialog>
     </div>
   );

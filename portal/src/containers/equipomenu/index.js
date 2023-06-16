@@ -1,20 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EquipoContainer from "./equipo";
+import { EquiposGET } from "../../services/axios";
+
 
 function EquipoMenu() {
-  const [products, setProducts] = useState([
-    { id: "0", Empresa: "tata", ciudad: "GDL", FechaDeCaptura: "16/05/2023" },
-    { id: "1", Empresa: "TCS", ciudad: "CDMX", FechaDeCaptura: "16/05/2023" },
-    { id: "2", Empresa: "USAA", ciudad: "MTY", FechaDeCaptura: "16/05/2023" },
-  ]);
+
+  useEffect(() => {
+    console.log('Respuesta:  Corri el use efect')
+    const fetchData = async () => {
+      try {
+        const response = await EquiposGET();
+        console.log('Respuesta ', response.data);
+        setProducts(response.data) // Aquí puedes hacer lo que necesites con los datos recibidos
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [products, setProducts] = useState();
 
   const [modalFormVisible, setModalFormVisible] = useState(false); // Modal agregar
   const [modalSignature, setModalSignature] = useState(false);//Modal Firma
   const [modalInformacion, setModalInformacion] = useState(false);//Modal Informacion
   const [informacion, setInformacion] = useState('');//Modal Informacion
 
+
+
+
   const handleReload = () => {
     window.location.reload();
+
   };
   const handleFirmaGuardada = (dataURL) => {
     console.log("La firma desde el menuEquipo es: ", dataURL);

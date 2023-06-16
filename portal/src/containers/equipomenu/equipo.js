@@ -44,16 +44,18 @@ const EquipoContainer = (props) => {
           }}
         />
 
-        <Button
-          icon="pi pi-pencil"
-          onClick={() => handleOnSignature(rowData)}
-          label="Firmar"
-          style={{
-            marginLeft: "10px",
-            backgroundColor: "#fc4103",
-            border: "#6366f100",
-          }}
-        />
+        {products.firma && (
+          <Button
+            icon="pi pi-pencil"
+            onClick={() => handleOnSignature(rowData)}
+            label="Firmar"
+            style={{
+              marginLeft: "10px",
+              backgroundColor: "#fc4103",
+              border: "#6366f100",
+            }}
+          />
+        )}
       </div>
     );
   };
@@ -76,7 +78,7 @@ const EquipoContainer = (props) => {
         removableSort
       >
         <Column
-          field="id"
+          field="ID"
           header="ID"
           sortable
           style={{ width: "150px" }}
@@ -88,13 +90,13 @@ const EquipoContainer = (props) => {
           style={{ width: "150px" }}
         ></Column>
         <Column
-          field="ciudad"
+          field="Ciudad"
           header="Ciudad"
           sortable
           style={{ width: "100px" }}
         ></Column>
         <Column
-          field="FechaDeCaptura"
+          field="Fecha"
           header="Fecha"
           sortable
           style={{ width: "100px" }}
@@ -178,8 +180,8 @@ const EquipoContainer = (props) => {
         modal
       >
         <Informacion informacion={informacion} />
-        <div style={{display:'flex', justifyContent:'center',paddingTop:'14px'}}>
-        <Button onClick={handleCloseModal}>Cerrar</Button>
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '14px' }}>
+          <Button onClick={handleCloseModal}>Cerrar</Button>
 
         </div>
       </Dialog>

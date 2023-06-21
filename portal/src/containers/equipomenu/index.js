@@ -10,7 +10,7 @@ function EquipoMenu() {
     const fetchData = async () => {
       try {
         const response = await EquiposGET();
-        console.log('Respuesta ', response.data);
+        //console.log('Respuesta ', response.data);
         setProducts(response.data) // Aquí puedes hacer lo que necesites con los datos recibidos
       } catch (error) {
         console.error(error);

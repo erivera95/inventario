@@ -31,7 +31,12 @@ const EquipoContainer = (props) => {
   } = props;
 
 
+
+
+
   const rowButtonTemplate = (rowData) => {
+    const hasFirma = rowData.Firma==='undefined'||!rowData.Firma;
+    console.log("Respuesta: ",hasFirma,rowData.Firma)
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Button
@@ -44,7 +49,7 @@ const EquipoContainer = (props) => {
           }}
         />
 
-        {products.firma && (
+        {hasFirma && (
           <Button
             icon="pi pi-pencil"
             onClick={() => handleOnSignature(rowData)}
@@ -100,6 +105,7 @@ const EquipoContainer = (props) => {
           header="Fecha"
           sortable
           style={{ width: "100px" }}
+          body={(rowData) => new Date(rowData.Fecha).toLocaleDateString()}
         ></Column>
         <Column
           body={rowButtonTemplate}

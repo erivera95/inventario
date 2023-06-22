@@ -1,0 +1,26 @@
+.divContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.divLabelInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.labelInputs {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.DropdownInput {
+  width: 43vw;
+}
+.inputText {
+  width: 43vw;
+}
+.inputTextArea{
+    width: 86.5vw;
+}

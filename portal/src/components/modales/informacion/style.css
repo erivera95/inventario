@@ -1,0 +1,25 @@
+.container {
+    display: block;
+    align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerModalInformacion {
+    display: flex;
+    justify-content: center;
+}
+
+.titulo {
+  background-color: #e5b36cbe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+}
+.informacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,2 @@
+inventario/portal/node_modules/
+inventario/backInventario/node_modules/

@@ -32,7 +32,10 @@ function EquipoMenu() {
 
   const handleReload = () => {
     window.location.reload();
-
+  };
+  const handleOnClickAdd = () => {
+    setModalFormVisible(true)
+    console.log('Lo pase a true')
   };
   const handleFirmaGuardada = (dataURL) => {
     console.log("La firma desde el menuEquipo es: ", dataURL);
@@ -61,6 +64,7 @@ function EquipoMenu() {
       <EquipoContainer
         products={products}
         handleReload={handleReload}
+        handleOnClickAdd={handleOnClickAdd}
         modalFormVisible={modalFormVisible}
         handleCloseModal={handleCloseModal}
 

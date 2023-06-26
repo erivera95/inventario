@@ -36,7 +36,6 @@ const EquipoContainer = (props) => {
 
   const rowButtonTemplate = (rowData) => {
     const hasFirma = rowData.Firma==='undefined'||!rowData.Firma;
-    console.log("Respuesta: ",hasFirma,rowData.Firma)
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         <Button

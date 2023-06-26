@@ -44,17 +44,16 @@ async function infoModal(req, res) {
     const departamentosResult = await pool.request().query('SELECT * FROM Departamentos');
 
     const datos = {
-      empresas: empresasResult.recordset,
-      ciudades: ciudadesResult.recordset,
-      puestos: puestosResult.recordset,
-      tiposEquipo: tiposEquipoResult.recordset,
-      departamentos: departamentosResult.recordset,
+      Empresas: empresasResult.recordset,
+      Ciudades: ciudadesResult.recordset,
+      Puestos: puestosResult.recordset,
+      TiposEquipo: tiposEquipoResult.recordset,
+      Departamentos: departamentosResult.recordset,
     };
-
-    res.send(`Datos Revisados`);
+    res.status(200).json(datos);
   } catch (error) {
-    console.error('Error al insertar datos dummy', error);
-    res.status(500).send('Error al insertar datos dummy');
+    console.log(error)
+    res.status(500).send('Error al consultar los datos');
   }
 }
 

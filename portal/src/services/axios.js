@@ -16,3 +16,17 @@ export const EquiposGET = async () => {
         return error;
     }
 }
+export const ModalAdd = async () => {
+    try {
+        const response = await axios(
+            {
+                url: URL + '/ModalAdd',
+                method: 'GET',
+            }
+        );
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+}

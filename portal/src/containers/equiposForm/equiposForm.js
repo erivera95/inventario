@@ -1,49 +1,22 @@
 import React, { useState } from 'react'
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import "./style.css";
 
-const EquiposFormContainer = () => {
+const EquiposFormContainer = (props) => {
 
-    
+    const {
+        Empresas,
+        Ciudades,
+        Puestos,
+        TiposEquipo,
+        Departamentos
+    } = props;
+
+    console.log("Respuesta Empresas: ", Empresas)
+
     const [selectedCity, setSelectedCity] = useState(null);
-
-    const empresas = [
-        { name: "New York Life", code: "NY" },
-        { name: "Riveras Movement", code: "RM" },
-        { name: "London Package", code: "LDN" },
-        { name: "Information static", code: "IST" },
-        { name: "AXA", code: "AXa" },
-    ];
-    const Plazo = [
-        { name: "1 Mes", code: "1M" },
-        { name: "6 Meses", code: "6M" },
-        { name: "1 Año", code: "1Y" },
-        { name: "De por vida", code: "LT" },
-    ];
-    const Departamento = [
-        { name: "New York Life", code: "NY" },
-        { name: "Riveras Movement", code: "RM" },
-        { name: "London Package", code: "LDN" },
-        { name: "Information static", code: "IST" },
-        { name: "AXA", code: "AXa" },
-    ];
-    const Version = [
-        { name: "New York Life", code: "NY" },
-        { name: "Riveras Movement", code: "RM" },
-        { name: "London Package", code: "LDN" },
-        { name: "Information static", code: "IST" },
-        { name: "AXA", code: "AXa" },
-    ];
-    const Localidad = [
-        { name: "New York Life", code: "NY" },
-        { name: "Riveras Movement", code: "RM" },
-        { name: "London Package", code: "LDN" },
-        { name: "Information static", code: "IST" },
-        { name: "AXA", code: "AXa" },
-    ];
 
     const [value, setValue] = useState("");
 
@@ -57,8 +30,8 @@ const EquiposFormContainer = () => {
                 <Dropdown
                     value={selectedCity}
                     onChange={(e) => setSelectedCity(e.value)}
-                    options={empresas}
-                    optionLabel="name"
+                    options={Empresas}
+                    optionLabel="Empresa"
                     placeholder="---"
                     className="DropdownInput"
                 />
@@ -68,10 +41,13 @@ const EquiposFormContainer = () => {
                 <label htmlFor="username" class="labelInputs">
                     Ciudad
                 </label>
-                <InputText
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    className="inputText"
+                <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={Ciudades}
+                    optionLabel="Ciudad"
+                    placeholder="---"
+                    className="DropdownInput"
                 />
             </div>
 
@@ -83,8 +59,8 @@ const EquiposFormContainer = () => {
                     <Dropdown
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.value)}
-                        options={Departamento}
-                        optionLabel="name"
+                        options={Departamentos}
+                        optionLabel="Departamento"
                         placeholder="Selecciona Departamento"
                         className="DropdownInput"
                     />
@@ -96,8 +72,8 @@ const EquiposFormContainer = () => {
                     <Dropdown
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.value)}
-                        options={Departamento}
-                        optionLabel="name"
+                        options={Puestos}
+                        optionLabel="Puesto"
                         placeholder="---"
                         className="DropdownInput"
                     />
@@ -112,15 +88,15 @@ const EquiposFormContainer = () => {
                     <Dropdown
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.value)}
-                        options={Version}
-                        optionLabel="name"
+                        options={TiposEquipo}
+                        optionLabel="TipoEquipo"
                         placeholder="Select a tipo"
                         className="DropdownInput"
                     />
                 </div>
             </div>
 
-            
+
             <div
                 id="Botones"
                 style={{

@@ -6,6 +6,8 @@ import { Button } from "primereact/button";
 import "./style.css";
 
 const EquiposFormContainer = () => {
+
+    
     const [selectedCity, setSelectedCity] = useState(null);
 
     const empresas = [

@@ -33,9 +33,34 @@ async function createEquipo(req, res) {
     res.status(500).send('Error al insertar datos dummy');
   }
 }
+async function infoModal(req, res) {
+  try {
+    const pool = await db.poolPromise;
+
+    const empresasResult = await pool.request().query('SELECT * FROM Empresas');
+    const ciudadesResult = await pool.request().query('SELECT * FROM Ciudades');
+    const puestosResult = await pool.request().query('SELECT * FROM Puestos');
+    const tiposEquipoResult = await pool.request().query('SELECT * FROM TiposEquipo');
+    const departamentosResult = await pool.request().query('SELECT * FROM Departamentos');
+
+    const datos = {
+      empresas: empresasResult.recordset,
+      ciudades: ciudadesResult.recordset,
+      puestos: puestosResult.recordset,
+      tiposEquipo: tiposEquipoResult.recordset,
+      departamentos: departamentosResult.recordset,
+    };
+
+    res.send(`Datos Revisados`);
+  } catch (error) {
+    console.error('Error al insertar datos dummy', error);
+    res.status(500).send('Error al insertar datos dummy');
+  }
+}
 
 module.exports = {
   getRoot,
   getEquipo,
   createEquipo,
+  infoModal,
 };

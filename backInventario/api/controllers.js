@@ -1,59 +1,97 @@
-
 const db = require('../database/db');
+const services = require('./services')
 
-// Controlador para la ruta raíz "/"
 async function getRoot(req, res) {
   res.send('Estoy respondiendo desde la función de API');
 }
 
 async function getEquipo(req, res) {
   try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query('SELECT * FROM EquipoComputo');
-    res.send(result.recordset);
-
+    const equiposGet = await services.getEquipo();
+    res.send(equiposGet)
   } catch (error) {
     console.error('Error al realizar la consulta a la base de datos', error);
     res.status(500).send('Error al realizar la consulta a la base de datos');
   }
 }
 
-
 async function createEquipo(req, res) {
   try {
     const { Empresa, Ciudad, Firma } = req.body;
-    const pool = await db.poolPromise;
-    const query = `INSERT INTO EquipoComputo (Empresa, Ciudad, Fecha, Firma) VALUES ('${Empresa}', '${Ciudad}', CURRENT_TIMESTAMP, '${Firma}')`;
-    await pool.request().query(query)
-    res.send(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`);
-    //res.send(`Datos ingresados exitosamente`);
+    const resultado = await services.agregarEquipo(Empresa, Ciudad, Firma);
+    res.send(resultado);
     console.log(req.body)
   } catch (error) {
     console.error('Error al insertar datos dummy', error);
     res.status(500).send('Error al insertar datos dummy');
   }
 }
-async function infoModal(req, res) {
-  try {
-    const pool = await db.poolPromise;
 
-    const empresasResult = await pool.request().query('SELECT * FROM Empresas');
-    const ciudadesResult = await pool.request().query('SELECT * FROM Ciudades');
-    const puestosResult = await pool.request().query('SELECT * FROM Puestos');
-    const tiposEquipoResult = await pool.request().query('SELECT * FROM TiposEquipo');
-    const departamentosResult = await pool.request().query('SELECT * FROM Departamentos');
+async function infoModalForm(req, res) {
+  try {
+
+    const empresasGet = await services.getEmpresas();
+    const ciudadesGet = await services.getCiudades();
+    const puestosGet = await services.getPuestos();
+    const tiposEquipoGet = await services.getTiposEquipo();
+    const departamentosGet = await services.getDepartamentos();
 
     const datos = {
-      Empresas: empresasResult.recordset,
-      Ciudades: ciudadesResult.recordset,
-      Puestos: puestosResult.recordset,
-      TiposEquipo: tiposEquipoResult.recordset,
-      Departamentos: departamentosResult.recordset,
+      Empresas: empresasGet,
+      Ciudades: ciudadesGet,
+      Puestos: puestosGet,
+      TiposEquipo: tiposEquipoGet,
+      Departamentos: departamentosGet,
     };
     res.status(200).json(datos);
   } catch (error) {
     console.log(error)
-    res.status(500).send('Error al consultar los datos');
+    res.status(500).send('Error al consultar los datos completos');
+  }
+}
+async function getEmpresas(req, res) {
+  try {
+    const empresasGet = await services.getEmpresas();
+    res.status(200).send(empresasGet);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Error al consultar las datos de empresas');
+  }
+}
+async function getCiudades(req, res) {
+  try {
+    const ciudadesGet = await services.getCiudades();
+    res.status(200).send(ciudadesGet);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Error al consultar las datos de las Ciudades');
+  }
+}
+async function getPuestos(req, res) {
+  try {
+    const puestosGet = await services.getPuestos();
+    res.status(200).send(puestosGet);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Error al consultar las datos de los puestos');
+  }
+}
+async function getTiposEquipo(req, res) {
+  try {
+    const tiposEquipoGet = await services.getTiposEquipo();
+    res.status(200).send(tiposEquipoGet);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Error al consultar las datos de los tipos de equipos');
+  }
+}
+async function getDepartamentos(req, res) {
+  try {
+    const departamentosGet = await services.getDepartamentos();
+    res.status(200).send(departamentosGet);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Error al consultar las datos de Departamentos');
   }
 }
 
@@ -61,5 +99,10 @@ module.exports = {
   getRoot,
   getEquipo,
   createEquipo,
-  infoModal,
+  infoModalForm,
+  getEmpresas,
+  getCiudades,
+  getPuestos,
+  getTiposEquipo,
+  getDepartamentos
 };

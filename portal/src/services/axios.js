@@ -16,6 +16,7 @@ export const EquiposGET = async () => {
         return error;
     }
 }
+
 export const ModalAdd = async () => {
     try {
         const response = await axios(

@@ -18,6 +18,24 @@ export const getEquipos = async () => {
     }
 }
 
+export const actualizarFirma = async (data) => {
+    try {
+        const response = await axios(
+            {
+                url: URL + "/actualizarfirma",
+                method: 'POST',
+                data: data
+            }
+        );
+
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+
+}
+
 export const modalInfoAgregar = async () => {
     try {
         const response = await axios(
@@ -68,6 +86,36 @@ export const getPuestos = async () => {
         const response = await axios(
             {
                 url: URL + '/ciudades/lista',
+                method: 'GET',
+            }
+        );
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+}
+
+export const getTiposEquipo = async () => {
+    try {
+        const response = await axios(
+            {
+                url: URL + '/tipos-equipo/lista',
+                method: 'GET',
+            }
+        );
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+}
+
+export const getDepartamentos = async () => {
+    try {
+        const response = await axios(
+            {
+                url: URL + '/departamentos/lista',
                 method: 'GET',
             }
         );

@@ -3,8 +3,6 @@ const db = require('../database/db');
 const knexConfig = require('../knex');
 const knex = require('knex')(knexConfig);
 
-
-
 async function getEquipoKnex() {
     try {
         const result = await knex('EquipoComputo').select('*');
@@ -93,9 +91,8 @@ async function agregarEquipo(Empresa, Ciudad, Firma) {
 async function actualizarFirma(id, nuevaFirma) {
     try {
         await knex('EquipoComputo')
+            .update({ Firma: nuevaFirma })
             .where({ ID: id })
-            .update({ Firma: nuevaFirma });
-
         console.log('Firma actualizada correctamente');
     } catch (error) {
         console.error('Error al actualizar la firma:', error);

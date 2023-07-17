@@ -41,8 +41,8 @@ async function actualizarFirma(req, res) {
   try {
     const { id, nuevaFirma } = req.body; // Obtén el ID del registro a actualizar desde los parámetros de la solicitud
     const resultado = await services.actualizarFirma(id, nuevaFirma);
-    res.status(200).json({ message: 'Firma actualizada correctamente' }, resultado);
-    console.log(req.body)
+    console.log("Lo que agregare es: ", req.body)
+    res.send(resultado);
   } catch (error) {
     console.error('Error al insertar datos dummy', error);
     res.status(500).send('Error al insertar datos dummy');

@@ -21,7 +21,7 @@ router.get('/', getRoot);
 router.get('/knex', getEquipoKnex); //recupera informacion de la tabla equiposcomputo
 
 router.get('/equipos/todos', getEquipo); //recupera informacion de la tabla equiposcomputo
-router.get('/actualizarfirma', actualizarFirma); //recupera informacion de la tabla equiposcomputo
+router.post('/actualizarfirma', actualizarFirma); //Agrega informacion al campo firma
 router.post('/equipos/agregar', createEquipo); //agrega informacion a la tabla equipos computo
 router.get('/empresas/lista', getEmpresas);//recupera informacion de la tabla
 router.get('/ciudades/lista', getCiudades);//recupera informacion de la tabla

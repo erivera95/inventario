@@ -18,6 +18,24 @@ export const getEquipos = async () => {
     }
 }
 
+export const createEquipo = async (data) => {
+    try {
+        const response = await axios(
+            {
+                url: URL + "/equipos/agregar",
+                method: 'POST',
+                data: data
+            }
+        );
+
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+
+}
+
 export const actualizarFirma = async (data) => {
     try {
         const response = await axios(

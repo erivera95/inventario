@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EquipoContainer from "./equipo";
-import { EquiposGET } from "../../services/axios";
+import { getEquipos } from "../../services/axios";
 
 
 function EquipoMenu() {
@@ -9,7 +9,7 @@ function EquipoMenu() {
     console.log('Respuesta:  Corri el use efect')
     const fetchData = async () => {
       try {
-        const response = await EquiposGET();
+        const response = await getEquipos();
         //console.log('Respuesta ', response.data);
         setProducts(response.data) // Aquí puedes hacer lo que necesites con los datos recibidos
       } catch (error) {

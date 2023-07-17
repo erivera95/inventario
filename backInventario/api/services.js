@@ -1,60 +1,74 @@
 const db = require('../database/db');
 
+const knexConfig = require('../knex');
+const knex = require('knex')(knexConfig);
+
+
+
+async function getEquipoKnex() {
+    try {
+        const result = await knex('EquipoComputo').select('*');
+        return result;
+    } catch (error) {
+        console.error('Error al realizar la consulta a la base de datos', error);
+        throw error;
+    }
+}
+
 async function getEquipo() {
     try {
-        const pool = await db.poolPromise;
-        const result = await pool.request().query('SELECT * FROM EquipoComputo');
-        return result.recordset;
+        const result = await knex('EquipoComputo').select('*');
+        return result;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
     }
 }
+
 async function getEmpresas() {
     try {
-        const pool = await db.poolPromise;
-        const empresasResult = await pool.request().query('SELECT * FROM Empresas');
-        return empresasResult.recordset;
+        const empresas = await knex('Empresas').select('*');
+        return empresas;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
     }
 }
+
 async function getCiudades() {
     try {
-        const pool = await db.poolPromise;
-        const ciudadesResult = await pool.request().query('SELECT * FROM Ciudades');
-        return ciudadesResult.recordset;
+        const ciudades = await knex('Ciudades').select('*');
+        return ciudades;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
     }
 }
+
 async function getPuestos() {
     try {
-        const pool = await db.poolPromise;
-        const puestosResult = await pool.request().query('SELECT * FROM Puestos');
-        return puestosResult.recordset;
+        const puestos = await knex('Puestos').select('*');
+        return puestos;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
     }
 }
+
 async function getTiposEquipo() {
     try {
-        const pool = await db.poolPromise;
-        const tiposEquipoResult = await pool.request().query('SELECT * FROM TiposEquipo');
-        return tiposEquipoResult.recordset;
+        const tiposEquipo = await knex('TiposEquipo').select('*');
+        return tiposEquipo;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
     }
 }
+
 async function getDepartamentos() {
     try {
-        const pool = await db.poolPromise;
-        const departametnosResult = await pool.request().query('SELECT * FROM Departamentos');
-        return departametnosResult.recordset;
+        const departamentos = await knex('Departamentos').select('*');
+        return departamentos;
     } catch (error) {
         console.error('Error al realizar la consulta a la base de datos', error);
         throw error;
@@ -63,13 +77,29 @@ async function getDepartamentos() {
 
 async function agregarEquipo(Empresa, Ciudad, Firma) {
     try {
-        const pool = await db.poolPromise;
-        const query = `INSERT INTO EquipoComputo (Empresa, Ciudad, Fecha, Firma) VALUES ('${Empresa}', '${Ciudad}', CURRENT_TIMESTAMP, '${Firma}')`;
-        await pool.request().query(query)
-        console.log(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`)
-        return `Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`
+        await knex('EquipoComputo').insert({
+            Empresa: Empresa,
+            Ciudad: Ciudad,
+            Fecha: new Date().toISOString(),
+            Firma: Firma
+        });
+        console.log(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`);
+        return `Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`;
     } catch (error) {
-        console.error('Error al insertar datos a la base de datos', error)
+        console.error('Error al insertar datos a la base de datos', error);
+    }
+}
+
+async function actualizarFirma(id, nuevaFirma) {
+    try {
+        await knex('EquipoComputo')
+            .where({ ID: id })
+            .update({ Firma: nuevaFirma });
+
+        console.log('Firma actualizada correctamente');
+    } catch (error) {
+        console.error('Error al actualizar la firma:', error);
+        throw error;
     }
 }
 
@@ -83,4 +113,7 @@ module.exports = {
     getPuestos,
     getTiposEquipo,
     getDepartamentos,
+    actualizarFirma,
+
+    getEquipoKnex,
 };

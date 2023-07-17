@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EquiposFormContainer from './equiposForm'
-import { ModalAdd } from '../../services/axios';
+import { modalInfoAgregar } from '../../services/axios';
 
 function EquiposForm() {
   const [Empresas, setEmpresas] = useState();
@@ -12,7 +12,7 @@ function EquiposForm() {
     console.log('Respuesta:  Corri el use efect de equipos form')
     const fetchData = async () => {
       try {
-        const response = await ModalAdd();
+        const response = await modalInfoAgregar();
         console.log("Respuesta: ", response.data)
         setEmpresas(response.data.Empresas)
         setCiudades(response.data.Ciudades)

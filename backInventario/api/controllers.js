@@ -1,10 +1,21 @@
 const db = require('../database/db');
 const services = require('./services')
 
+
+
 async function getRoot(req, res) {
   res.send('Estoy respondiendo desde la función de API');
 }
 
+async function getEquipoKnex(req, res) {
+  try {
+    const equiposGet = await services.getEquipoKnex();
+    res.send(equiposGet)
+  } catch (error) {
+    console.error('Error al realizar la consulta a la base de datos', error);
+    res.status(500).send('Error al realizar la consulta a la base de datos');
+  }
+}
 async function getEquipo(req, res) {
   try {
     const equiposGet = await services.getEquipo();
@@ -24,6 +35,18 @@ async function createEquipo(req, res) {
   } catch (error) {
     console.error('Error al insertar datos dummy', error);
     res.status(500).send('Error al insertar datos dummy');
+  }
+}
+async function actualizarFirma(req, res) {
+  try {
+    const { id, nuevaFirma } = req.body; // Obtén el ID del registro a actualizar desde los parámetros de la solicitud
+    const resultado = await services.actualizarFirma(id, nuevaFirma);
+    res.status(200).json({ message: 'Firma actualizada correctamente' }, resultado);
+    console.log(req.body)
+  } catch (error) {
+    console.error('Error al insertar datos dummy', error);
+    res.status(500).send('Error al insertar datos dummy');
+
   }
 }
 
@@ -49,6 +72,7 @@ async function infoModalForm(req, res) {
     res.status(500).send('Error al consultar los datos completos');
   }
 }
+
 async function getEmpresas(req, res) {
   try {
     const empresasGet = await services.getEmpresas();
@@ -95,6 +119,8 @@ async function getDepartamentos(req, res) {
   }
 }
 
+
+
 module.exports = {
   getRoot,
   getEquipo,
@@ -104,5 +130,8 @@ module.exports = {
   getCiudades,
   getPuestos,
   getTiposEquipo,
-  getDepartamentos
+  getDepartamentos,
+  actualizarFirma,
+
+  getEquipoKnex
 };

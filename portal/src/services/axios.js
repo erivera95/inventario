@@ -19,12 +19,13 @@ export const getEquipos = async () => {
 }
 
 export const createEquipo = async (data) => {
+    console.log("Desde axios los datos son:", data)
     try {
         const response = await axios(
             {
                 url: URL + "/equipos/agregar",
                 method: 'POST',
-                data: data
+                Datos: {data}
             }
         );
 

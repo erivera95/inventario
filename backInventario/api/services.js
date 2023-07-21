@@ -73,19 +73,23 @@ async function getDepartamentos() {
     }
 }
 
-async function agregarEquipo(Empresa, Ciudad, Firma) {
-    try {
-        await knex('EquipoComputo').insert({
-            Empresa: Empresa,
-            Ciudad: Ciudad,
-            Fecha: new Date().toISOString(),
-            Firma: Firma
-        });
-        console.log(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`);
-        return `Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}`;
-    } catch (error) {
-        console.error('Error al insertar datos a la base de datos', error);
-    }
+async function agregarEquipo(Datos) {
+    console.log("Los datos recibidos en back son ", Datos)
+    // try {
+    //     await knex('EquipoComputo').insert({
+    //         Empresa: Empresa,
+    //         Ciudad: Ciudad,
+    //         Fecha: new Date().toISOString(),
+    //         Firma: Firma,
+    //         Departamento: Departamento,
+    //         Puesto: Puesto,
+    //         TipoEquipo: TipoEquipo
+    //     });
+    //     console.log(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}, Departamento=${Departamento}, Puesto=${Puesto}, TipoEquipo=${TipoEquipo}`);
+    //     return `Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}, Departamento=${Departamento}, Puesto=${Puesto}, TipoEquipo=${TipoEquipo}`;
+    // } catch (error) {
+    //     console.error('Error al insertar datos a la base de datos', error);
+    // }
 }
 
 async function actualizarFirma(id, nuevaFirma) {

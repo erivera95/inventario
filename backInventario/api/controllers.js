@@ -28,10 +28,10 @@ async function getEquipo(req, res) {
 
 async function createEquipo(req, res) {
   try {
-    const { Empresa, Ciudad, Firma } = req.body;
-    const resultado = await services.agregarEquipo(Empresa, Ciudad, Firma);
-    res.send(resultado);
     console.log(req.body)
+    const { Datos } = req.body;
+    const resultado = await services.agregarEquipo(Datos);
+    res.send(resultado);
   } catch (error) {
     console.error('Error al insertar datos dummy', error);
     res.status(500).send('Error al insertar datos dummy');

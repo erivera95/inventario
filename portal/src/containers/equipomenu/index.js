@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EquipoContainer from "./equipo";
-import { getEquipos } from "../../services/axios";
+import { getEquipos,createEquipo } from "../../services/axios";
 
 
 function EquipoMenu() {
@@ -42,6 +42,20 @@ function EquipoMenu() {
     setModalSignature(false)
     console.log("Guarde y cerre desde firmaguardada")
   };
+  const handleAgregar = async (Datos) => {
+    try {
+      
+      console.log("Los datos a mandar son: ", Datos);
+      const response = await createEquipo(Datos);
+      // Aquí puedes manejar la respuesta, por ejemplo, mostrar un mensaje de éxito o realizar alguna otra acción
+      console.log("Respuesta de la solicitud POST: ", response);
+    } catch (error) {
+      // Aquí puedes manejar el error, mostrar un mensaje de error o realizar alguna otra acción
+      console.error("Error al realizar la solicitud POST: ", error);
+    }
+
+    //setModalFormVisible(false)
+  };
   const handleInformation = (rowData) => {
     setModalInformacion(true)
     setInformacion(rowData)
@@ -67,6 +81,9 @@ function EquipoMenu() {
         handleOnClickAdd={handleOnClickAdd}
         modalFormVisible={modalFormVisible}
         handleCloseModal={handleCloseModal}
+        
+        //Modal Agregar
+        handleAgregar={handleAgregar}
 
         //Modal Firma
         handleOnSignature={handleOnSignature}

@@ -23,18 +23,17 @@ export const createEquipo = async (data) => {
     try {
         const response = await axios(
             {
-                url: URL + "/equipos/agregar",
+                url: `${URL}/equipos/agregar`,
                 method: 'POST',
-                Datos: {data}
+                data:data,
+                headers: {
+                    'Content-Type': 'application/json',}
             }
         );
-
         return response;
-
     } catch (error) {
         return error;
     }
-
 }
 
 export const actualizarFirma = async (data) => {

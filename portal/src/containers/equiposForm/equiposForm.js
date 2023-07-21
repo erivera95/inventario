@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
@@ -11,14 +12,25 @@ const EquiposFormContainer = (props) => {
         Ciudades,
         Puestos,
         TiposEquipo,
-        Departamentos
+        Departamentos,
+        handleRecuperarDatos
     } = props;
 
     console.log("Respuesta Empresas: ", Empresas)
 
-    const [selectedCity, setSelectedCity] = useState(null);
+    const [empresa, setEmpresa] = useState(null);
+    const [ciudad, setCiudade] = useState(null);
+    const [puesto, setPuesto] = useState(null);
+    const [tipoequipo, setTipoEquipo] = useState(null);
+    const [departamento, setDepartamento] = useState(null);
 
-    const [value, setValue] = useState("");
+    const limpiarValores = () => {
+        setEmpresa(null);
+        setCiudade(null);
+        setPuesto(null);
+        setTipoEquipo(null);
+        setDepartamento(null);
+      };
 
     return (
         <div style={{ width: "87vw" }}>
@@ -28,8 +40,8 @@ const EquiposFormContainer = (props) => {
                     Empresa
                 </label>
                 <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={empresa}
+                    onChange={(e) => setEmpresa(e.value)}
                     options={Empresas}
                     optionLabel="Empresa"
                     placeholder="---"
@@ -42,8 +54,8 @@ const EquiposFormContainer = (props) => {
                     Ciudad
                 </label>
                 <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={ciudad}
+                    onChange={(e) => setCiudade(e.value)}
                     options={Ciudades}
                     optionLabel="Ciudad"
                     placeholder="---"
@@ -57,8 +69,8 @@ const EquiposFormContainer = (props) => {
                         Departamento
                     </label>
                     <Dropdown
-                        value={selectedCity}
-                        onChange={(e) => setSelectedCity(e.value)}
+                        value={departamento}
+                        onChange={(e) => setDepartamento(e.value)}
                         options={Departamentos}
                         optionLabel="Departamento"
                         placeholder="Selecciona Departamento"
@@ -70,8 +82,8 @@ const EquiposFormContainer = (props) => {
                         Puesto
                     </label>
                     <Dropdown
-                        value={selectedCity}
-                        onChange={(e) => setSelectedCity(e.value)}
+                        value={puesto}
+                        onChange={(e) => setPuesto(e.value)}
                         options={Puestos}
                         optionLabel="Puesto"
                         placeholder="---"
@@ -80,14 +92,14 @@ const EquiposFormContainer = (props) => {
                 </div>
             </div>
 
-            <div class="divContainer" id="Version_Localidad">
+            <div class="divContainer" id="Tipo de equipo">
                 <div class="divLabelInput">
                     <label htmlFor="username" class="labelInputs">
                         Tipo de equipo
                     </label>
                     <Dropdown
-                        value={selectedCity}
-                        onChange={(e) => setSelectedCity(e.value)}
+                        value={tipoequipo}
+                        onChange={(e) => setTipoEquipo(e.value)}
                         options={TiposEquipo}
                         optionLabel="TipoEquipo"
                         placeholder="Select a tipo"
@@ -108,10 +120,17 @@ const EquiposFormContainer = (props) => {
                 <Button
                     style={{ backgroundColor: "#00a811", border: "#6366f100" }}
                     icon="pi pi-save"
+                    onClick={() => handleRecuperarDatos(
+                        empresa.Empresa,
+                        ciudad.Ciudad,
+                        puesto.Puesto,
+                        tipoequipo.TipoEquipo,
+                        departamento.Departamento)}
+                        disabled={empresa === null || ciudad === null || puesto === null || tipoequipo === null || departamento === null}
                 >
                     Guardar
                 </Button>
-                <Button style={{ backgroundColor: "#00bacf", border: "#6366f100" }}>
+                <Button style={{ backgroundColor: "#00bacf", border: "#6366f100" }} onClick={limpiarValores}>
                     Limpiar
                 </Button>
             </div>

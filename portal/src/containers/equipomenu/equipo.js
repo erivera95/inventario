@@ -17,6 +17,7 @@ const EquipoContainer = (props) => {
     //Modal agregar
     modalFormVisible,
     handleCloseModal,
+    handleAgregar,
 
     //Modal firma
     modalSignature,
@@ -144,7 +145,7 @@ const EquipoContainer = (props) => {
               border: "none",
               cursor: "pointer",
             }} onClick={handleCloseModal}>X</Button>
-          <EquiposForm />
+          <EquiposForm Datos={handleAgregar}/>
         </p>
       </Dialog>
 

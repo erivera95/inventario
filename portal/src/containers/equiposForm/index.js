@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import EquiposFormContainer from './equiposForm'
 import { modalInfoAgregar } from '../../services/axios';
 
-function EquiposForm() {
+function EquiposForm({ Datos }) {
   const [Empresas, setEmpresas] = useState();
   const [Ciudades, setCiudades] = useState();
   const [Puestos, setPuestos] = useState();
@@ -26,6 +26,19 @@ function EquiposForm() {
 
     fetchData();
   }, []);
+
+  const handleRecuperarDatos = (Empresa, Ciudad, Puesto, TipoEquipo, Departamento) => {
+    const datosSeleccionados = {
+      Empresa: Empresa,
+      Ciudad: Ciudad,
+      Puesto: Puesto,
+      TipoEquipo: TipoEquipo,
+      Departamento: Departamento
+    };
+    console.log("Los datos seleccionados fueron ", datosSeleccionados);
+    Datos(datosSeleccionados);
+  }
+
   return (
     <div>
       <EquiposFormContainer
@@ -34,6 +47,7 @@ function EquiposForm() {
         Puestos={Puestos}
         TiposEquipo={TiposEquipo}
         Departamentos={Departamentos}
+        handleRecuperarDatos={handleRecuperarDatos}
       />
     </div>
   )

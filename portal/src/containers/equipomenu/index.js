@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EquipoContainer from "./equipo";
-import { getEquipos,createEquipo } from "../../services/axios";
+import { getEquipos, createEquipo } from "../../services/axios";
 
 
 function EquipoMenu() {
@@ -26,6 +26,7 @@ function EquipoMenu() {
   const [modalSignature, setModalSignature] = useState(false);//Modal Firma
   const [modalInformacion, setModalInformacion] = useState(false);//Modal Informacion
   const [informacion, setInformacion] = useState('');//Modal Informacion
+  const [modalConfirmation, setModalConfirmation] = useState(true);//Modal Confirmacion
 
 
 
@@ -44,17 +45,12 @@ function EquipoMenu() {
   };
   const handleAgregar = async (Datos) => {
     try {
-      
-      console.log("Los datos a mandar son: ", Datos);
       const response = await createEquipo(Datos);
-      // Aquí puedes manejar la respuesta, por ejemplo, mostrar un mensaje de éxito o realizar alguna otra acción
       console.log("Respuesta de la solicitud POST: ", response);
     } catch (error) {
-      // Aquí puedes manejar el error, mostrar un mensaje de error o realizar alguna otra acción
       console.error("Error al realizar la solicitud POST: ", error);
     }
-
-    //setModalFormVisible(false)
+    setModalFormVisible(false)
   };
   const handleInformation = (rowData) => {
     setModalInformacion(true)
@@ -70,6 +66,7 @@ function EquipoMenu() {
     setModalFormVisible(false)
     setModalSignature(false)
     setModalInformacion(false)
+    setModalConfirmation(false)
     console.log('Lo pase a false con close modal')
   }
 
@@ -81,7 +78,7 @@ function EquipoMenu() {
         handleOnClickAdd={handleOnClickAdd}
         modalFormVisible={modalFormVisible}
         handleCloseModal={handleCloseModal}
-        
+
         //Modal Agregar
         handleAgregar={handleAgregar}
 
@@ -94,6 +91,9 @@ function EquipoMenu() {
         modalInformacion={modalInformacion}
         handleInformation={handleInformation}
         informacion={informacion}
+
+        //Modal Confirmacion
+        modalConfirmation={modalConfirmation}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ConfirmacionContainer = () => {
     return (
-        <div>ConfirmacionContainer</div>
+        <div>¿Deseas agregar firma?</div>
     )
 }
 

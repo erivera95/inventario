@@ -1,7 +1,7 @@
 const knexConfig = {
     client: 'mssql',
     connection: {
-        server: '192.168.100.57',
+        server: '192.168.100.56',
         // server: 'localhost',
         user: 'sa',
         password: 'Jerc@2023',

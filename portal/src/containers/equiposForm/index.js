@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EquiposFormContainer from './equiposForm'
-import { modalInfoAgregar } from '../../services/axios';
+import { createEquipo, modalInfoAgregar } from '../../services/axios';
 
 function EquiposForm({ Datos }) {
   const [Empresas, setEmpresas] = useState();
@@ -27,16 +27,17 @@ function EquiposForm({ Datos }) {
     fetchData();
   }, []);
 
-  const handleRecuperarDatos = (Empresa, Ciudad, Puesto, TipoEquipo, Departamento) => {
+  const handleRecuperarDatos = async (Empresa, Ciudad, Puesto, TipoEquipo, Departamento) => {
     const datosSeleccionados = {
-      Empresa: Empresa,
-      Ciudad: Ciudad,
-      Puesto: Puesto,
-      TipoEquipo: TipoEquipo,
-      Departamento: Departamento
+      Empresa,
+      Ciudad,
+      Puesto,
+      TipoEquipo,
+      Departamento
     };
-    console.log("Los datos seleccionados fueron ", datosSeleccionados);
-    Datos(datosSeleccionados);
+    // Datos(datosSeleccionados);
+    const response = await createEquipo(datosSeleccionados);
+    console.log("Respuesta de la solicitud POST: ", response);
   }
 
   return (

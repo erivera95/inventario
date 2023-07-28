@@ -6,7 +6,6 @@ const services = require('./services')
 async function getRoot(req, res) {
   res.send('Estoy respondiendo desde la función de API');
 }
-
 async function getEquipoKnex(req, res) {
   try {
     const equiposGet = await services.getEquipoKnex();
@@ -25,12 +24,12 @@ async function getEquipo(req, res) {
     res.status(500).send('Error al realizar la consulta a la base de datos');
   }
 }
-
 async function createEquipo(req, res) {
   try {
-    console.log(req.body)
-    const { Datos } = req.body;
-    const resultado = await services.agregarEquipo(Datos);
+    const data = req.body
+    //console.log('Datos recibidos en la solicitud POST:', data);
+    //const { Empresa, Ciudad, Firma, Departamento, Puesto, TipoEquipo } = req.body;
+    const resultado = await services.agregarEquipo(data);
     res.send(resultado);
   } catch (error) {
     console.error('Error al insertar datos dummy', error);
@@ -49,7 +48,6 @@ async function actualizarFirma(req, res) {
 
   }
 }
-
 async function infoModalForm(req, res) {
   try {
 
@@ -72,7 +70,6 @@ async function infoModalForm(req, res) {
     res.status(500).send('Error al consultar los datos completos');
   }
 }
-
 async function getEmpresas(req, res) {
   try {
     const empresasGet = await services.getEmpresas();

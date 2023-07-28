@@ -7,6 +7,7 @@ import "primeicons/primeicons.css";
 import EquiposForm from "../equiposForm";
 import Firma from "../../components/modales/firma";
 import Informacion from "../../components/modales/informacion";
+import Confirmacion from "../../components/modales/confirmacion";
 
 const EquipoContainer = (props) => {
   const {
@@ -27,7 +28,10 @@ const EquipoContainer = (props) => {
     //Modal informacion
     handleInformation,
     informacion,
-    modalInformacion
+    modalInformacion,
+
+    modalConfirmation,
+    
 
   } = props;
 
@@ -188,6 +192,30 @@ const EquipoContainer = (props) => {
         <Informacion informacion={informacion} />
         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '14px' }}>
           <Button onClick={handleCloseModal}>Cerrar</Button>
+
+        </div>
+      </Dialog>
+
+      {/*Modal informacion*/}
+      <Dialog
+        class="modal"
+        visible={modalConfirmation}
+        style={{
+          width: '50vw',
+          backgroundColor: "#FFFFFF",
+          alignContent: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          padding: '15px',
+          borderRadius: '15px',
+        }}
+        modal
+        closable={false}
+      >
+      <Confirmacion/>
+      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '14px' }}>
+          <Button onClick={handleCloseModal}>No</Button>
+          <Button onClick={handleCloseModal}>Si</Button>
 
         </div>
       </Dialog>

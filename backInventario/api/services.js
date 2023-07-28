@@ -73,23 +73,33 @@ async function getDepartamentos() {
     }
 }
 
-async function agregarEquipo(Datos) {
-    console.log("Los datos recibidos en back son ", Datos)
-    // try {
-    //     await knex('EquipoComputo').insert({
-    //         Empresa: Empresa,
-    //         Ciudad: Ciudad,
-    //         Fecha: new Date().toISOString(),
-    //         Firma: Firma,
-    //         Departamento: Departamento,
-    //         Puesto: Puesto,
-    //         TipoEquipo: TipoEquipo
-    //     });
-    //     console.log(`Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}, Departamento=${Departamento}, Puesto=${Puesto}, TipoEquipo=${TipoEquipo}`);
-    //     return `Datos ingresados exitosamente: Empresa=${Empresa}, Ciudad=${Ciudad}, Firma=${Firma}, Departamento=${Departamento}, Puesto=${Puesto}, TipoEquipo=${TipoEquipo}`;
-    // } catch (error) {
-    //     console.error('Error al insertar datos a la base de datos', error);
-    // }
+async function agregarEquipo(data) {
+    //console.log("Los datos recibidos en back son ", data)
+    try {
+        await knex('EquipoComputo').insert({
+            Empresa: data.Empresa,
+            Ciudad: data.Ciudad,
+            Fecha: new Date().toISOString(),
+            Departamento: data.Departamento,
+            Puesto: data.Puesto,
+            TipoEquipo: data.TipoEquipo
+        }).returning('id');
+
+        const nuevoId = result[0];
+
+        console.log(`Datos ingresados exitosamente: 
+        Empresa=${data.Empresa},
+        Ciudad=${data.Ciudad},
+        Firma=${data.Firma},
+        Departamento=${data.Departamento},
+        Puesto=${data.Puesto},
+        TipoEquipo=${data.TipoEquipo},
+        ID=${nuevoId}`);
+
+        return `Datos ingresados exitosamente, ID=${nuevoId}`;
+    } catch (error) {
+        console.error('Error al insertar datos a la base de datos', error);
+    }
 }
 
 async function actualizarFirma(id, nuevaFirma) {

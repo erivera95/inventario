@@ -26,7 +26,8 @@ function EquipoMenu() {
   const [modalSignature, setModalSignature] = useState(false);//Modal Firma
   const [modalInformacion, setModalInformacion] = useState(false);//Modal Informacion
   const [informacion, setInformacion] = useState('');//Modal Informacion
-  const [modalConfirmation, setModalConfirmation] = useState(true);//Modal Confirmacion
+  const [modalConfirmation, setModalConfirmation] = useState(false);//Modl Confirmacion
+  const [idFirma, setIdFirma] = useState('');//Id temporal para modal firma
 
 
 
@@ -47,10 +48,12 @@ function EquipoMenu() {
     try {
       const response = await createEquipo(Datos);
       console.log("Respuesta de la solicitud POST: ", response);
+      setIdFirma(response.data);
     } catch (error) {
       console.error("Error al realizar la solicitud POST: ", error);
     }
-    setModalFormVisible(false)
+    handleCloseModal();
+    setModalConfirmation(true);
   };
   const handleInformation = (rowData) => {
     setModalInformacion(true)
@@ -59,8 +62,9 @@ function EquipoMenu() {
     console.log("Impresion desde boton informacion")
   };
   const handleOnSignature = () => {
+    handleCloseModal()
     setModalSignature(true)
-    console.log('Lo pase a true')
+    console.log('abri modal signature con el id:', idFirma)
   };
   const handleCloseModal = () => {
     setModalFormVisible(false)

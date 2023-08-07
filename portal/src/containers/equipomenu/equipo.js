@@ -196,12 +196,12 @@ const EquipoContainer = (props) => {
         </div>
       </Dialog>
 
-      {/*Modal informacion*/}
+      {/*Modal Confirmacion*/}
       <Dialog
         class="modal"
         visible={modalConfirmation}
         style={{
-          width: '50vw',
+          width: '20vw',
           backgroundColor: "#FFFFFF",
           alignContent: 'center',
           justifyContent: 'center',
@@ -213,9 +213,9 @@ const EquipoContainer = (props) => {
         closable={false}
       >
       <Confirmacion/>
-      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '14px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', paddingTop: '14px' }}>
           <Button onClick={handleCloseModal}>No</Button>
-          <Button onClick={handleCloseModal}>Si</Button>
+          <Button onClick={handleOnSignature}>Si</Button>
 
         </div>
       </Dialog>

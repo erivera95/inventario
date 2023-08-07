@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EquiposFormContainer from './equiposForm'
-import { createEquipo, modalInfoAgregar } from '../../services/axios';
+import {  modalInfoAgregar } from '../../services/axios';
 
 function EquiposForm({ Datos }) {
   const [Empresas, setEmpresas] = useState();
@@ -35,9 +35,7 @@ function EquiposForm({ Datos }) {
       TipoEquipo,
       Departamento
     };
-    // Datos(datosSeleccionados);
-    const response = await createEquipo(datosSeleccionados);
-    console.log("Respuesta de la solicitud POST: ", response);
+    Datos(datosSeleccionados);
   }
 
   return (

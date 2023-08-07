@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 import { Dropdown } from "primereact/dropdown";
-import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "./style.css";
 

@@ -74,18 +74,17 @@ async function getDepartamentos() {
 }
 
 async function agregarEquipo(data) {
-    //console.log("Los datos recibidos en back son ", data)
     try {
-        await knex('EquipoComputo').insert({
-            Empresa: data.Empresa,
-            Ciudad: data.Ciudad,
-            Fecha: new Date().toISOString(),
-            Departamento: data.Departamento,
-            Puesto: data.Puesto,
-            TipoEquipo: data.TipoEquipo
-        }).returning('id');
-
-        const nuevoId = result[0];
+        const [nuevoId] = await knex('EquipoComputo')
+            .insert({
+                Empresa: data.Empresa,
+                Ciudad: data.Ciudad,
+                Fecha: new Date().toISOString(),
+                Departamento: data.Departamento,
+                Puesto: data.Puesto,
+                TipoEquipo: data.TipoEquipo
+            })
+            .returning(['id']);
 
         console.log(`Datos ingresados exitosamente: 
         Empresa=${data.Empresa},
@@ -94,9 +93,9 @@ async function agregarEquipo(data) {
         Departamento=${data.Departamento},
         Puesto=${data.Puesto},
         TipoEquipo=${data.TipoEquipo},
-        ID=${nuevoId}`);
+        ID=${nuevoId.id}`);
 
-        return `Datos ingresados exitosamente, ID=${nuevoId}`;
+        return `${nuevoId.id}`;
     } catch (error) {
         console.error('Error al insertar datos a la base de datos', error);
     }

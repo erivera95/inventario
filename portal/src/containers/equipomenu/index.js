@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import EquipoContainer from "./equipo";
-import { getEquipos, createEquipo } from "../../services/axios";
+import { getEquipos, createEquipo, actualizarFirma } from "../../services/axios";
 
 
 function EquipoMenu() {
 
   useEffect(() => {
-    console.log('Respuesta:  Corri el use efect')
     const fetchData = async () => {
       try {
         const response = await getEquipos();
-        //console.log('Respuesta ', response.data);
         setProducts(response.data) // Aquí puedes hacer lo que necesites con los datos recibidos
       } catch (error) {
         console.error(error);
@@ -26,7 +24,7 @@ function EquipoMenu() {
   const [modalSignature, setModalSignature] = useState(false);//Modal Firma
   const [modalInformacion, setModalInformacion] = useState(false);//Modal Informacion
   const [informacion, setInformacion] = useState('');//Modal Informacion
-  const [modalConfirmation, setModalConfirmation] = useState(false);//Modl Confirmacion
+  const [modalConfirmation, setModalConfirmation] = useState(true);//Modl Confirmacion
   const [idFirma, setIdFirma] = useState('');//Id temporal para modal firma
 
 
@@ -39,9 +37,12 @@ function EquipoMenu() {
     setModalFormVisible(true)
     console.log('Lo pase a true')
   };
-  const handleFirmaGuardada = (dataURL) => {
-    console.log("La firma desde el menuEquipo es: ", dataURL);
-    setModalSignature(false)
+  const handleFirmaGuardada = async (dataURL) => {
+
+    console.log("La firma desde el menuEquipo es: ", dataURL,idFirma);
+    //const response = await actualizarFirma(idFirma, dataURL);
+    //console.log("Respuesta de la solicitud POST FIRMA: ", response);
+    //setModalSignature(false)
     console.log("Guarde y cerre desde firmaguardada")
   };
   const handleAgregar = async (Datos) => {
@@ -61,10 +62,11 @@ function EquipoMenu() {
     console.log(rowData);
     console.log("Impresion desde boton informacion")
   };
-  const handleOnSignature = () => {
+  const handleOnSignature = (rowData) => {
     handleCloseModal()
-    setModalSignature(true)
-    console.log('abri modal signature con el id:', idFirma)
+    //setModalSignature(true)
+    console.log("El rowdata es:", rowData.ID)
+    rowData == undefined ? console.log(rowData.ID) : console.log("No hay información en rowData. ID", idFirma);
   };
   const handleCloseModal = () => {
     setModalFormVisible(false)
